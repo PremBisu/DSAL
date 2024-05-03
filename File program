@@ -1,0 +1,58 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+using namespace std;
+
+void write(const string& filename){
+    
+    ofstream outfile;
+    outfile.open("abcd.txt",ios::out|ios::app);
+    if(!outfile)
+    {
+        cerr<<"error while opening";
+        exit(1);
+    }
+    int entries;
+    cout<<"enter the number of entries";
+    cin>>entries;
+    string name;
+        int age;
+    for(int i=0; i<entries; i++)
+    {
+        
+        cout<<"enter name";
+        cin>>name;
+        cout<<"enter age";
+        cin>>age;
+        outfile<<name<<age;
+    }
+    outfile.close();
+
+}
+void read1(const string& filename)
+{
+    
+    ifstream infile;
+    infile.open("abcd.txt",ios::in);
+    if(!infile)
+    {
+        cerr<<"error for reading";
+        exit(1);
+    }
+    int age;
+    string name;
+    cout<<"data in the file";
+    while(infile>>name>>age)
+    {
+        cout<<name<<age;
+    }
+    infile.close();
+}
+
+int main()
+{
+    const string filename="abcd.txt";
+    write(filename);
+    read1(filename);
+    return 0;
+}
